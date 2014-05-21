@@ -2,11 +2,13 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import java.awt.Graphics;
 import java.awt.Color;
+import java.awt.event.MouseEvent;
+import java.awt.Point;
 //import java.awt.Point;
 //import java.awt.event.*;
 //import java.util.ArrayList;
 
-class Fractal2 extends JPanel implements Runnable {
+class Fractal2 extends JPanel implements Runnable{
     static final int RESOLUTION=500;
     static final int ITERATIONS=50;
     
@@ -27,7 +29,7 @@ class Fractal2 extends JPanel implements Runnable {
         
         thingy.repaint();
         
-        
+        /**
         for(int i=5;i<10000;i++){
             size=Math.pow(.995,i);
             thingy.repaint();
@@ -37,6 +39,7 @@ class Fractal2 extends JPanel implements Runnable {
                 
             }
         }
+        **/
         
         
         //thingy.repaint();
@@ -151,6 +154,7 @@ class Fractal2 extends JPanel implements Runnable {
         int y=pos.y;
         System.out.println(x+"\t"+y);
     }
+    
 }
 
 
