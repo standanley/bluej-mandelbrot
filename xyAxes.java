@@ -15,7 +15,7 @@ public class xyAxes
     //static final double size=.05;
     static final double centerx=0.015000;
     static final double centery =-0.8300000;
-    static final double size=.005;
+    static final double size=.01;
     
     static final double xmin=centerx-size;
     static final double xmax=centerx+size;
