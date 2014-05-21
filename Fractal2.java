@@ -3,12 +3,13 @@ import javax.swing.JPanel;
 import java.awt.Graphics;
 import java.awt.Color;
 import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.awt.Point;
 //import java.awt.Point;
 //import java.awt.event.*;
 //import java.util.ArrayList;
 
-class Fractal2 extends JPanel implements Runnable{
+class Fractal2 extends JPanel implements MouseListener{
     static final int RESOLUTION=500;
     static final int ITERATIONS=50;
     
@@ -18,9 +19,11 @@ class Fractal2 extends JPanel implements Runnable{
     static double centerx=-.4128;
     static double centery=-.682;
     static double size=2;
-    public static void main() {             
+    public static Fractal2 thingy;
+    
+    public static void main(){             
         JFrame f = new JFrame("Test1");
-        Fractal2 thingy=new Fractal2();//f);
+        thingy=new Fractal2();//f);
         f.setSize(500, 500);
         f.add(thingy);
         f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -28,6 +31,14 @@ class Fractal2 extends JPanel implements Runnable{
         f.setVisible(true);
         
         thingy.repaint();
+
+        /**
+        javax.swing.SwingUtilities.invokeLater(new Runnable() {
+            public void run() {
+                createAndShowGUI();
+            }
+        });
+        **/
         
         /**
         for(int i=5;i<10000;i++){
@@ -68,19 +79,9 @@ class Fractal2 extends JPanel implements Runnable{
     
     public Fractal2(){//JFrame parent) {
         
+        addMouseListener(this);
     }
     
-    public void run() {
-        for(int i = 0; i != -1; i++){
-            this.repaint();
-            try {
-                Thread.sleep(1000);
-            }
-            catch (InterruptedException e) {
-                System.out.println("INTERRUPTED");
-            }
-        }
-    }
     
     public static Color getHue(double hue){//hue should be between 0 and 1
         int Case=(int)(6.0*hue);
@@ -147,13 +148,46 @@ class Fractal2 extends JPanel implements Runnable{
         return Math.sqrt(a*a+b*b);
     }
     
-    
-    public void mouseClicked(final MouseEvent evt){
-        Point pos=evt.getPoint();
-        int x=pos.x;
-        int y=pos.y;
-        System.out.println(x+"\t"+y);
+        @Override
+    public void mouseClicked(MouseEvent e) {
+        int x = e.getX();
+        int y = 500-e.getY();
+        centerx=(x/500.0)*size*2+(centerx-size);
+        centery=(y/500.0)*size*2+(centery-size);
+        size/=2.0;
+        thingy.repaint();
+        System.out.println("Mouse Clicked at X: " + x + " - Y: " + y);
     }
+ 
+    @Override
+    public void mouseEntered(MouseEvent e) {
+        int x = e.getX();
+        int y = e.getY();
+        //System.out.println("Mouse Entered frame at X: " + x + " - Y: " + y);
+    }
+
+    @Override
+    public void mouseExited(MouseEvent e) {
+        int x = e.getX();
+        int y = e.getY();
+        //System.out.println("Mouse Exited frame at X: " + x + " - Y: " + y);
+    }
+
+    @Override
+    public void mousePressed(MouseEvent e) {
+        int x = e.getX();
+        int y = e.getY();
+        //System.out.println("Mouse Pressed at X: " + x + " - Y: " + y);
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent e) {
+        int x = e.getX();
+        int y = e.getY();
+        //System.out.println("Mouse Released at X: " + x + " - Y: " + y);
+    }
+
+    
     
 }
 
