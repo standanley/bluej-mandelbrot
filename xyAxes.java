@@ -10,9 +10,12 @@ public class xyAxes
 {
     static final int TICS=10;
     
-    static final double centerx=0.00164372;
-    static final double centery =-0.8224676;
-    static final double size=.04;
+    //static final double centerx=0.00164372;
+    //static final double centery =-0.8224676;
+    //static final double size=.05;
+    static final double centerx=0.015000;
+    static final double centery =-0.8300000;
+    static final double size=.005;
     
     static final double xmin=centerx-size;
     static final double xmax=centerx+size;
@@ -69,7 +72,7 @@ public class xyAxes
             for(int x=0;x<100;x++){
                 c[0]=x*xscale+xmin;
                 c[1]=y*yscale+ymin;
-                int ITERATIONS=15;
+                int ITERATIONS=25;
                 int num=getNum(z0,c,ITERATIONS);
                 System.out.println(num+"\t"+c[0]+"\t"+c[1]);
                 if(num==0){
