@@ -5,9 +5,6 @@ import java.awt.Color;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.Point;
-//import java.awt.Point;
-//import java.awt.event.*;
-//import java.util.ArrayList;
 
 class Fractal2 extends JPanel implements MouseListener{
     static final int RESOLUTION=500;
@@ -16,8 +13,8 @@ class Fractal2 extends JPanel implements MouseListener{
     
     
     static double[][] lines={{5,5},{50,100},{30,10},{5,60}};
-    static double centerx=-.4128;
-    static double centery=-.682;
+    static double centerx=-.5;
+    static double centery=0;
     static double size=2;
     public static Fractal2 thingy;
     
@@ -132,7 +129,7 @@ class Fractal2 extends JPanel implements MouseListener{
             z=squareComplex(z);
             z[0]+=c[0];
             z[1]+=c[1];
-            if(dist(z[0],z[1])>2){
+            if(dist(z[0],z[1])>3){
                 return i;
             }
         }
@@ -190,7 +187,12 @@ class Fractal2 extends JPanel implements MouseListener{
         //System.out.println("Mouse Released at X: " + x + " - Y: " + y);
     }
 
-    
+    static double[] cubeComplex(double[] z){
+        double[] temp=new double[2];
+        temp[0]=z[0]*z[0]*z[0]-3*z[0]*z[1]*z[1];
+        temp[1]=3*z[0]*z[0]*z[1]-z[1]*z[1]*z[1];
+        return temp;
+    }
     
 }
 
