@@ -11,7 +11,7 @@ import java.awt.Point;
 
 class Fractal2 extends JPanel implements MouseListener{
     static final int RESOLUTION=500;
-    static final int ITERATIONS=50;
+    static int ITERATIONS=100;
     
     
     
@@ -69,7 +69,7 @@ class Fractal2 extends JPanel implements MouseListener{
                 if(num==0){
                     g.setColor(Color.black);
                 }else{
-                    g.setColor(getHue((double)num/ITERATIONS));
+                    g.setColor(getHue((double)num%50/50.0));
                 }
                 g.fillRect(x,500-y,(int)(500.0/RESOLUTION),(int)(500.0/RESOLUTION));
                 
@@ -154,9 +154,9 @@ class Fractal2 extends JPanel implements MouseListener{
         int y = 500-e.getY();
         centerx=(x/500.0)*size*2+(centerx-size);
         centery=(y/500.0)*size*2+(centery-size);
-        size/=2.0;
+        size/=5.0;
         thingy.repaint();
-        System.out.println("Mouse Clicked at X: " + x + " - Y: " + y);
+        System.out.println("New Center: "+centerx+" + "+centery+" i\n\tNew zoom level: "+1.0/size);
     }
  
     @Override
@@ -171,6 +171,9 @@ class Fractal2 extends JPanel implements MouseListener{
         int x = e.getX();
         int y = e.getY();
         //System.out.println("Mouse Exited frame at X: " + x + " - Y: " + y);
+        ITERATIONS+=25;
+        System.out.println("New number of iterations: "+ITERATIONS);
+        thingy.repaint();
     }
 
     @Override
